@@ -73,20 +73,18 @@ const App: React.FC = () => {
       };
       setItems(newItems);
     }
-    const sourceItems = items[result.source.droppableId];
-    const destinationItems = items[result.destination.droppableId];
-    // const newTools = reorder(
-    //   tools,
-    //   result.source.index,
-    //   result.destination.index
-    // );
-
-    // setTools(newTools);
+  };
+  const handleDeleteClick = () => {
+    const newItems = {
+      ...items,
+      [Zone.Compost]: []
+    };
+    setItems(newItems);
   };
   return (
     <Container maxWidth="xl">
       <DragDropContext onDragEnd={handleDragEnd}>
-        <Garden items={items} />
+        <Garden items={items} onDeleteClick={handleDeleteClick} />
       </DragDropContext>
     </Container>
   );
