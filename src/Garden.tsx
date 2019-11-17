@@ -41,7 +41,7 @@ export const Garden: React.FC<IGardenProps> = props => {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={10}>
+        <Grid item xs={9}>
           <ItemsList
             id={Zone.Tools}
             items={props.items[Zone.Tools]}
