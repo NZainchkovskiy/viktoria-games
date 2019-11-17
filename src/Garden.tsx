@@ -22,16 +22,24 @@ interface IGardenProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cell: {
-      minHeight: 36,
       padding: 10,
-      width: 190,
-      height: 190,
       textAlign: "center",
       margin: 10
     },
     button: {
-      width: 158,
-      height: 158
+      [theme.breakpoints.down("sm")]: {
+        width: 50,
+        height: 50
+      },
+      [theme.breakpoints.up("md")]: {
+        width: 100,
+        height: 100
+      },
+      [theme.breakpoints.up("lg")]: {
+        width: 150,
+        height: 150
+      },
+      margin: 10
     }
   })
 );
@@ -40,8 +48,8 @@ export const Garden: React.FC<IGardenProps> = props => {
   const renderItem = (item: IItem) => <Item {...item} />;
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid item xs={9}>
+      <Grid container>
+        <Grid item xs={10}>
           <ItemsList
             id={Zone.Tools}
             items={props.items[Zone.Tools]}
@@ -49,16 +57,14 @@ export const Garden: React.FC<IGardenProps> = props => {
             direction="horizontal"
           />
         </Grid>
-        <Grid xs={1}>
+        <Grid xs={2}>
           <Card className={classes.cell}>
-            <CardContent>
-              <IconButton
-                className={classes.button}
-                onClick={props.onDeleteClick}
-              >
-                <DeleteIcon />
-              </IconButton>
-            </CardContent>
+            <IconButton
+              className={classes.button}
+              onClick={props.onDeleteClick}
+            >
+              <DeleteIcon />
+            </IconButton>
           </Card>
         </Grid>
         <Grid item>

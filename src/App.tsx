@@ -5,7 +5,24 @@ import { reorder, move, getPoo } from "./utils";
 import { IItem } from "./model/IItem";
 import { ItemType } from "./model/ItemType.enum";
 import { Zone } from "./model/Zone.enum";
-import { Container } from "@material-ui/core";
+import { Container, createMuiTheme } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
+
+declare module "@material-ui/core/styles/createMuiTheme" {
+  interface Theme {
+    item: {
+      width: number;
+      height: number;
+    };
+  }
+
+  interface ThemeOptions {
+    item?: {
+      width: number;
+      height: number;
+    };
+  }
+}
 
 const initialItems: { [key: string]: IItem[] } = {
   [Zone.Tools]: [
@@ -81,12 +98,15 @@ const App: React.FC = () => {
     };
     setItems(newItems);
   };
+  const theme = createMuiTheme({});
   return (
-    <Container maxWidth="xl">
-      <DragDropContext onDragEnd={handleDragEnd}>
-        <Garden items={items} onDeleteClick={handleDeleteClick} />
-      </DragDropContext>
-    </Container>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="xl">
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Garden items={items} onDeleteClick={handleDeleteClick} />
+        </DragDropContext>
+      </Container>
+    </ThemeProvider>
   );
 };
 

@@ -8,14 +8,22 @@ const useStyles = makeStyles((theme: Theme) =>
     cell: {
       minHeight: 36,
       padding: 10,
-      width: 150,
-      height: 150,
       textAlign: "center",
       margin: 10
     },
     image: {
-      width: 118,
-      height: 118
+      [theme.breakpoints.down("sm")]: {
+        width: 50,
+        height: 50
+      },
+      [theme.breakpoints.up("md")]: {
+        width: 100,
+        height: 100
+      },
+      [theme.breakpoints.up("lg")]: {
+        width: 150,
+        height: 150
+      }
     }
   })
 );
@@ -23,9 +31,7 @@ export const Item: React.FC<IItem> = props => {
   const classes = useStyles();
   return (
     <Card className={classes.cell}>
-      <CardContent>
-        <img className={classes.image} src={`images/${props.imgSrc}`} />
-      </CardContent>
+      <img className={classes.image} src={`images/${props.imgSrc}`} />
     </Card>
   );
 };

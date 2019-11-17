@@ -15,9 +15,19 @@ interface IItemsListProps {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     cell: {
-      minHeight: 170,
-      minWidth: 170,
-      padding: 10,
+      [theme.breakpoints.down("sm")]: {
+        minWidth: 90,
+        minHeight: 90
+      },
+      [theme.breakpoints.up("md")]: {
+        minWidth: 140,
+        minHeight: 140
+      },
+      [theme.breakpoints.up("lg")]: {
+        minWidth: 190,
+        minHeight: 190
+      },
+      margin: 10,
       display: "flex"
     }
   })
